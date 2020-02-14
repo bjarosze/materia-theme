@@ -969,7 +969,7 @@ spinbutton {
     }
 
     entry {
-      @extend %entry_raised;
+      @extend %entry;
 
       min-height: $medium-size;
       min-width: $large-size;
@@ -1121,6 +1121,12 @@ combobox {
 
   &:not(:last-child) > box > button.combo {
     @extend %linked-vertical-not-last-child;
+  }
+}
+
+.linked {
+  entry ~ button {
+    @extend %entry
   }
 }
 
@@ -1278,7 +1284,7 @@ searchbar > revealer > box {
 .titlebar {
   transition: background-color $duration $ease-out, color $duration $ease-out;
   border-radius: $corner-radius $corner-radius 0 0;
-  box-shadow: $shadow-z1, inset 0 1px highlight($titlebar);
+  box-shadow: $shadow-z1, inset 0 1px $titlebar;
   background-color: $titlebar;
   color: $titlebar-text;
 

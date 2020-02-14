@@ -23,6 +23,7 @@
   }
 }
 
+
 // Determine whether to use dark or light color on top of given color to meet accessibility standards for contrast.
 @function on($color, $type: text) {
   $contrast-tone: if(tone($color) == "dark", "light", "dark");
@@ -33,7 +34,7 @@
 
   @return map-get(map-get($on-colors, $contrast-tone), $type);
 }
-
+$fg-base: $grey-200;
 $on-colors: (
   dark: (
     primary: #1A73E8,
@@ -49,17 +50,17 @@ $on-colors: (
     entry-fill: rgba(black, .04)
   ),
   light: (
-    primary: #8AB4F8,
+    primary: $cyan-500,
     error: #F28B82,
     text: white,
-    text2: rgba(white, .7),
-    text-disabled: rgba(white, .5),
-    text2-disabled: rgba(white, .3),
-    stroke: rgba(white, .3),
-    stroke-disabled: rgba(white, .12),
-    divider: rgba(white, .12),
-    fill: rgba(white, .08),
-    entry-fill: rgba(white, .04)
+    text2: rgba($fg-base, .7),
+    text-disabled: rgba($fg-base, .5),
+    text2-disabled: rgba($fg-base, .3),
+    stroke: rgba($fg-base, .3),
+    stroke-disabled: rgba($fg-base, .12),
+    divider: rgba(black, .12),
+    fill: rgba($fg-base, .08),
+    entry-fill: rgba($fg-base, .04)
   )
 );
 
@@ -75,10 +76,10 @@ $on-colors: (
 }
 
 // Private variables for dark background colors
-$-dark-background:                       #1F1F1F;
-$-dark-surface-1dp:                      mix(white, $-dark-background, 5%);
-$-dark-surface-4dp:                      mix(white, $-dark-background, 9%);
-$-dark-surface-8dp:                      mix(white, $-dark-background, 12%);
+$-dark-background:                       $blue-grey-900;
+$-dark-surface-1dp:                      #29353b; // mix(white, $-dark-background, 5%);
+$-dark-surface-4dp:                      #222d32; // mix(white, $-dark-background, 9%);
+$-dark-surface-8dp:                      #2f3d44; // mix(white, $-dark-background, 12%);
 $-dark-surface-switch:                   mix(white, $-dark-background, 60%);
 
 //
@@ -104,11 +105,11 @@ $tooltip:                               rgba(#616161, .9);
 $scrim:                                 rgba(black, .6);
 $scrim-alt:                             rgba(black, .3);
 
-$panel:                                 if($topbar == 'dark', #1F1F1F, $scrim);
-$panel-solid:                           if($topbar == 'dark', #1F1F1F, #CCCCCC); // for Unity panel which doesn't allow translucent colors
+$panel:                                 $-dark-surface-4dp;
+$panel-solid:                           $-dark-surface-4dp;
 
 $titlebar:                              if($topbar == 'dark', $-dark-surface-4dp, #E0E0E0);
-$titlebar-backdrop:                     if($topbar == 'dark', $-dark-surface-1dp, #D6D6D6);
+$titlebar-backdrop:                     if($topbar == 'dark', $-dark-surface-4dp, #D6D6D6);
 $titlebar-indicator:                    if($topbar == 'dark', currentColor, $primary);
 
 //
@@ -141,7 +142,7 @@ $text-disabled:                         rgba($base-fg, .38);
 $text2-disabled:                        rgba($base-fg, .26);
 $stroke:                                rgba($base-fg, .26);
 $stroke-disabled:                       rgba($base-fg, .12);
-$divider:                               rgba($base-fg, .12);
+$divider:                               rgba(black, .12);
 $fill:                                  rgba($base-fg, .08);
 $entry-fill:                            rgba($base-fg, .04);
 
