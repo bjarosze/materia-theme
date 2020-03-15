@@ -75,6 +75,11 @@ $on-colors: (
   }
 }
 
+// Make translucent color opaque by blending with the background color.
+@function opacify($color, $bg) {
+  @return mix(change-color($color, $alpha: 1), $bg, alpha($color) * 100%);
+}
+
 // Private variables for dark background colors
 $-dark-background:                       $blue-grey-900;
 $-dark-surface-1dp:                      #29353b; // mix(white, $-dark-background, 5%);
@@ -157,6 +162,3 @@ $titlebar-stroke-disabled:              rgba($titlebar-base-fg, .12);
 $titlebar-divider:                      rgba($titlebar-base-fg, .12);
 $titlebar-fill:                         rgba($titlebar-base-fg, .08);
 $titlebar-entry-fill:                   rgba($titlebar-base-fg, .04);
-
-// workaround for GTK3 @placeholder_text_color which doesn't allow translucent colors
-$placeholder_text_color:                mix($base-fg, $base, percentage(.6));

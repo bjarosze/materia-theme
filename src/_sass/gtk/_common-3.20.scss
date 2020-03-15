@@ -177,6 +177,7 @@ label {
     }
 
     headerbar &,
+    menuitem &,
     tab &,
     button & {
       color: inherit;
@@ -1302,12 +1303,14 @@ searchbar > revealer > box {
   }
 
   .title {
-    padding: 0 12px;
+    padding-left: 12px;
+    padding-right: 12px;
     font-weight: bold;
   }
 
   .subtitle {
-    padding: 0 12px;
+    padding-left: 12px;
+    padding-right: 12px;
     font-size: smaller;
   }
 
@@ -1817,10 +1820,6 @@ menubar,
     &:disabled {
       color: $titlebar-text2-disabled;
     }
-
-    label:disabled {
-    color: inherit; // to inherit the above color
-    }
   }
 }
 
@@ -1884,7 +1883,7 @@ menu,
     label {
       &:dir(rtl),
       &:dir(ltr) {
-        color: inherit;
+        // color: inherit;
       }
     }
   }
@@ -3445,10 +3444,12 @@ messagedialog { // Message Dialog styling
   }
 
   &.suggested-action:not(:disabled) {
+    background-color: transparent;
     // @include ink-color($primary);
   }
 
   &.destructive-action:not(:disabled) {
+    background-color: transparent;
     @include ink-color($error);
   }
 }
@@ -3560,7 +3561,6 @@ stacksidebar.sidebar {
     > label {
       padding-left: 6px;
       padding-right: 6px;
-      color: inherit;
     }
 
     &.needs-attention > label {
@@ -3638,8 +3638,6 @@ placessidebar.sidebar {
     }
 
     label.sidebar-label {
-      color: inherit;
-
       &:dir(ltr) {
         padding-right: 2px;
       }
