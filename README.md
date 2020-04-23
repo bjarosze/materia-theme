@@ -57,11 +57,15 @@ Supports **ripple animations** for GTK 3:
   - `gtk-murrine-engine` on Fedora
   - `gtk2-engine-murrine` on openSUSE
   - `gtk2-engines-murrine` on Debian, Ubuntu, etc.
-- `bc` — build dependency
+- `sassc` — build-time dependency
 
-## Installation
+## Package Installation
 
 ### Distro Packages
+
+> NOTE: Some of these distro packages could be outdated and incompatible with your desktop environment. You can check the latest version [here](https://github.com/nana-4/materia-theme/releases).
+
+<!-- For contributors, please add your package alphabetically. -->
 
 Distro | Package Name | Annotation
 --- | --- | ---
@@ -71,11 +75,7 @@ Fedora | `materia-gtk-theme` | Available from [@LaurentTreguier's Copr](https://
 Solus | `materia-gtk-theme` | [Link](https://dev.getsol.us/source/materia-gtk-theme/)
 Ubuntu 18.04 or later | `materia-gtk-theme` | [Link](https://packages.ubuntu.com/materia-gtk-theme)
 
-<!-- For contributors, please add your package alphabetically! -->
-
-**Warning:** **Ubuntu disco (19.04) & eoan (19.10)** packages are very outdated and incompatible with GNOME 3.32 or later! If you are using GNOME on Ubuntu, you should _manually_ install the theme.
-
-> Note: Some distro packages (especially Ubuntu ones) may be outdated and incompatible with your desktop environment. You can check the latest version [here](https://github.com/nana-4/materia-theme/releases).
+**WARNING:** Ubuntu **disco (19.04)** & **eoan (19.10)** packages are very outdated and incompatible with GNOME 3.32 or later! If you're using GNOME on Ubuntu 19.04 or 19.10, I highly recommend [manual installation](#manual-installation) below.
 
 ### Flatpak
 
@@ -86,31 +86,48 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 flatpak install flathub org.gtk.Gtk3theme.Materia{,-dark,-light}{,-compact}
 ```
 
-### Manual Installation
+## Manual Installation
 
-Run the following commands in the terminal:
+1. Clone the repository and move into the project directory in the terminal:
 
 ```sh
 git clone --depth 1 https://github.com/nana-4/materia-theme
 cd materia-theme
+```
+
+2. Build and install it using Meson:
+
+```sh
+meson "build"
+sudo ninja -C "build" install
+```
+
+Alternatively, you can use `./install.sh` script without using Meson:
+
+```sh
 sudo ./install.sh
 ```
 
-> Tip: `./install.sh` allows the following options:
+#### Build Options for Meson
 
+Option | Default Value | Description
+--- | --- | ---
+`prefix` | `/usr` | Installation prefix
+`colors` | `default,light,dark` | Choose color variant(s)
+`sizes` | `default,compact` | Choose size variant(s)
+`gnome_shell_version` | n/a (auto) | Manually set gnome-shell version
+
+Example of usage:
+
+```sh
+meson "build" -Dprefix="$HOME/.local" -Dcolors=default,dark -Dsizes=compact
 ```
--d, --dest DIR          Specify destination directory (Default: /usr/share/themes)
--n, --name NAME         Specify theme name (Default: Materia)
--c, --color VARIANT...  Specify color variant(s) [standard|dark|light] (Default: All variants)
--s, --size VARIANT      Specify size variant [standard|compact] (Default: All variants)
--g, --gdm               Install and apply GDM theme (for advanced users)
-                        See also: src/gnome-shell/README.md
--h, --help              Show help
-```
 
-> For more information, run: `./install.sh --help`
+#### Build Options for `./install.sh`
 
-### Manual Uninstallation
+Run `./install.sh --help` for details.
+
+## Manual Uninstallation
 
 Delete the installed directories:
 
@@ -169,5 +186,6 @@ Materia is distributed under the terms of the GNU General Public License, versio
 - Yauhen Kirylau (@actionless) who is oomox author polished scripts and supported Materia with [oomox](https://github.com/themix-project/oomox).
 - @n3oxmind who helped improve the installation script.
 - @smurphos who made and provided the Cinnamon theme for Materia.
+- Meson code/implementation in Materia was heavily influenced by @monday15's [lounge-gtk-theme](https://github.com/monday15/lounge-gtk-theme).
 
 Also thank you to all contributors and upstream developers.
